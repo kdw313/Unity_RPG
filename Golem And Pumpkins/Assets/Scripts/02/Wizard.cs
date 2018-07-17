@@ -6,13 +6,11 @@ public class Wizard:Player {
 
     public static int power = 100;
 
-    public delegate void PlayerDied();
+    public delegate void PlayerDied(int a, int b);
     public static event PlayerDied playerDied;
 
     void Start () {
-        if(playerDied != null){
-            playerDied(); 
-        }
+        StartCoroutine(CallFunction());
     }
 
     public Wizard () {
@@ -22,7 +20,7 @@ public class Wizard:Player {
     IEnumerator CallFunction(){
         yield return new WaitForSeconds(2f);
         if(playerDied != null) {
-            playerDied();
+            playerDied(5, 6);
         }
     }
 
